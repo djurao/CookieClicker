@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 64ae3a07f5b2b40449a3e4eb3c1804ca
+timeCreated: 1510865923
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Prefabs/Planets/Hoth.prefab
+  uploadId: 222710

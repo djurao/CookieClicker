@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 142df2703269e424cb799982a34327ec
+timeCreated: 1510865944
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Prefabs/Planets/Manthra.prefab
+  uploadId: 222710

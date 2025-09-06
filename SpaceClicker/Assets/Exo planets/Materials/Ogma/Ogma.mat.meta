@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 63bb189d09b73554aa479cb3cf53046f
+timeCreated: 1460648522
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Ogma/Ogma.mat
+  uploadId: 222710

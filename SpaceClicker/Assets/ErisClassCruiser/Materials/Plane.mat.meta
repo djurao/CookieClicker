@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f70e418ad5d7f6a4c8b737ac905312ac
+timeCreated: 1501910258
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99768
+  packageName: Eris Class Cruiser
+  packageVersion: 1.0
+  assetPath: Assets/ErisClassCruiser/Materials/Plane.mat
+  uploadId: 199881

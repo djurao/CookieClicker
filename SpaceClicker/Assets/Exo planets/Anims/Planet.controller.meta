@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d4a824e8218271f4e95763277f4e0872
+timeCreated: 1460817667
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Anims/Planet.controller
+  uploadId: 222710

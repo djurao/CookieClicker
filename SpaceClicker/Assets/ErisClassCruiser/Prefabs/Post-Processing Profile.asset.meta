@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0204f237b67ff8145b0c3a19280b38bb
+timeCreated: 1500467147
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99768
+  packageName: Eris Class Cruiser
+  packageVersion: 1.0
+  assetPath: Assets/ErisClassCruiser/Prefabs/Post-Processing Profile.asset
+  uploadId: 199881

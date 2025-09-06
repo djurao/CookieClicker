@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cfed63ce139158d468a4495c93d601ec
+timeCreated: 1501906182
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99768
+  packageName: Eris Class Cruiser
+  packageVersion: 1.0
+  assetPath: Assets/ErisClassCruiser/README.txt
+  uploadId: 199881

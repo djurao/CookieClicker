@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2e416f71bb6a0064b946212deddb9288
+timeCreated: 1461861232
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Sun/Sun.mat
+  uploadId: 222710

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f1e303e61e3e1ca46b44de15978d8077
+timeCreated: 1460652031
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Oceania/Oceania.mat
+  uploadId: 222710

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 977f8f1c5162d48499f81af2a43ba060
+timeCreated: 1460659743
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Safar/Safar.mat
+  uploadId: 222710

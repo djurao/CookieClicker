@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 891e0cda09491ba4297849df9f68db9f
+timeCreated: 1490904129
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Shaders/Atmosphere ASE.shader
+  uploadId: 222710

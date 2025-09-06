@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: af48fc074eed9634488d68ff2d5540ba
+timeCreated: 1510851936
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Vendara/Vendara.mat
+  uploadId: 222710

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7a91147f37bf2dc45904b4fed0cdb200
+timeCreated: 1460805868
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Atmospheres/Atmosphere blue 2.mat
+  uploadId: 222710

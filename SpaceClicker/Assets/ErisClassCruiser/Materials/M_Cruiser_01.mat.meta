@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 78ec267a99d5ed84db4ef8875dbd43ae
+timeCreated: 1504737257
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99768
+  packageName: Eris Class Cruiser
+  packageVersion: 1.0
+  assetPath: Assets/ErisClassCruiser/Materials/M_Cruiser_01.mat
+  uploadId: 199881

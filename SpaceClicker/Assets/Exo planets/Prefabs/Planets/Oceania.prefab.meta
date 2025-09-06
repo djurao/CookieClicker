@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9e8f504eea9c75f4c855f7bff7ff5903
+timeCreated: 1510865925
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Prefabs/Planets/Oceania.prefab
+  uploadId: 222710

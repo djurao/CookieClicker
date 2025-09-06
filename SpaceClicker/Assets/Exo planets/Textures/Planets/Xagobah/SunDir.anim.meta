@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9577c7b676314e54b8ea59266f26147c
+timeCreated: 1510933936
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Textures/Planets/Xagobah/SunDir.anim
+  uploadId: 222710

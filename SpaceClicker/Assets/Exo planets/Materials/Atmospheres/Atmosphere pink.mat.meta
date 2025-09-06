@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e8521007eeb5efc458d3f4bab0b36161
+timeCreated: 1460807692
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Materials/Atmospheres/Atmosphere pink.mat
+  uploadId: 222710

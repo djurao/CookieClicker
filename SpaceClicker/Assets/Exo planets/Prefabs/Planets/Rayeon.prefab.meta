@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e4cc86a2911f81c4cafc54b909e0f521
+timeCreated: 1510865940
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Prefabs/Planets/Rayeon.prefab
+  uploadId: 222710

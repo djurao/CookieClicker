@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e6b64a961654d564d95e6df2b6136e9e
+timeCreated: 1510865927
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60740
+  packageName: Planets
+  packageVersion: 1.3
+  assetPath: Assets/Exo planets/Prefabs/Planets/Arkas.prefab
+  uploadId: 222710
