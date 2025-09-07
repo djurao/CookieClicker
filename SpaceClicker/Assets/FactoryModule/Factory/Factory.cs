@@ -11,8 +11,7 @@ public class Factory : MonoBehaviour
     public float productionCnt;
     public int productionInterval;
     public float speed;
-    public int manualAmount;
-    public int autoAmount;
+    public int productionOutput;
     public int amount;
     public int lifetimeAmount;
     public int maxAmount;
@@ -21,12 +20,13 @@ public class Factory : MonoBehaviour
     public bool autoCollectState;
     public Toggle autoCollectToggle;
     public int reward;
+    public int rewardPrice;
     public int ProductionOutputMultiplier;
     public bool collectOnlyIfAmountIsFull;
-    public TextMeshProUGUI amountLabel;
-    public TextMeshProUGUI manualAmountLabel;
-    public TextMeshProUGUI autoAmountLabel;
+    public TextMeshProUGUI storageStatsLabel;
     public TextMeshProUGUI collectLabel;
+    public TextMeshProUGUI speedLabel;
+
     public string collectRewardName;
     public Button collectBtn;
     public UnityEvent onCollect;
@@ -44,10 +44,10 @@ public class Factory : MonoBehaviour
         autoCollectState = !autoCollectState;
         autoCollectToggle.isOn = autoCollectState;
     }
-    public void OpenFactoryUpgrade() => UpgradeFactory.Instance.Open(this);  
     public void Collect() 
     {
-        collectLabel.text = $"+{reward} {collectRewardName}";
+
+        collectLabel.text = $"+{Reward()} {collectRewardName}";
         collectLabel.gameObject.SetActive(true);
         onCollect?.Invoke();
         lifetimeAmount += amount;
@@ -58,12 +58,24 @@ public class Factory : MonoBehaviour
         Invoke(nameof(DisableLabel), 2);
     }
     // assigned to onCollect in the inspector
-    public void IncreasePopullation() => Population.Instance.IncreaseCurrentPopulation(reward);
+    public void IncreasePopullation() => Population.Instance.IncreaseCurrentPopulation(Reward());
+    private int Reward() 
+    {
+        var result = RoundDownAmountWithDeduction(amount);
+        var finalReward = reward * (result.roundedAmount / rewardPrice);
+        return finalReward;
+    }
+    (int roundedAmount, int remainder) RoundDownAmountWithDeduction(int amount)
+    {
+        int remainder = amount % 10;
+        int roundedAmount = amount - remainder;
+        return (roundedAmount, remainder);
+    }
     private void DisableLabel() => collectLabel.gameObject.SetActive(false);
 
     public void AddAmountManualy() 
     {
-        IncreaseAmount(manualAmount * ProductionOutputMultiplier);
+        IncreaseAmount(productionOutput * ProductionOutputMultiplier);
     }
     private void Update()
     {
@@ -88,11 +100,11 @@ public class Factory : MonoBehaviour
             else 
             {
                 productionCnt = 0;  
-                IncreaseAmount(autoAmount * ProductionOutputMultiplier);
+                IncreaseAmount(productionOutput * ProductionOutputMultiplier);
             }
         }
     }
-    private bool CollectBtnStatus => (amount > 0 && !collectOnlyIfAmountIsFull) || (amount == maxAmount && collectOnlyIfAmountIsFull);
+    private bool CollectBtnStatus => (amount >= rewardPrice && !collectOnlyIfAmountIsFull) || (amount == maxAmount && collectOnlyIfAmountIsFull);
     private void IncreaseAmount(int amountToAdd) 
     {
         amount += amountToAdd;
@@ -134,8 +146,8 @@ public class Factory : MonoBehaviour
     }
     public void UpdateLabels() 
     {
-        amountLabel.text = $"{amount} / {maxAmount}";
-        autoAmountLabel.text = $"{autoAmount} / {productionInterval}s";
+        storageStatsLabel.text = $"+{productionOutput*ProductionOutputMultiplier}    {amount} / {maxAmount}";
+        speedLabel.text = $"production speed {speed:0.0}x";
     }
 }
 [Serializable]
