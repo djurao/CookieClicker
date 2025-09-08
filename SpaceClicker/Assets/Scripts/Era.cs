@@ -4,33 +4,36 @@ using UnityEngine;
 
 public class Era : MonoBehaviour
 {
+    public static Era Instance;
     public TextMeshProUGUI eraLabel;
     public EraDefinition[] eraDefinitions;
     public EraDefinition currentEra;
-    public int currentEraIndex;
-    public float currentEraProgress;
-
+    private DNA dna;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Era")) currentEraIndex = PlayerPrefs.GetInt("Era");
-        SetEra(currentEraIndex);
+        dna = DNA.Instance;
+        SetEra(dna.currentEvolutionStage);
     }
     public void SetEra(int index) 
     {
         currentEra = eraDefinitions[index];
         eraLabel.text = currentEra.Name;
-        currentEra.factoies.SetActive(true);
+        Population.Instance.SetEra(index);
+        currentEra.factories.SetActive(true);
     }
     public void DisableEra() 
     {
-        currentEra.factoies.SetActive(false);
+        currentEra.factories.SetActive(false);
     }
     private void Update()
     {
-        if (currentEraIndex == 0) 
+        if (dna.currentEvolutionStage == 0) 
         {
-            currentEraProgress = Population.Instance.currentPopulationGroup.amount;
-            if (currentEraProgress >= currentEra.eraCost.cost) 
+            if (DNA.Instance.CheckEraProgress()) 
             {
                 ProgressToNextEra();
             }
@@ -39,9 +42,8 @@ public class Era : MonoBehaviour
     public void ProgressToNextEra() 
     {
         DisableEra();
-        currentEraIndex++;
-        SetEra(currentEraIndex);
-        PlayerPrefs.SetInt("Era", currentEraIndex);
+        SetEra(dna.currentEvolutionStage);
+        PlayerPrefs.SetInt("Era", dna.currentEvolutionStage);
     }
 }
 
@@ -50,14 +52,5 @@ public class EraDefinition
 {
     public string Name;
     public string Description;
-    public EraCost eraCost;
-    public GameObject factoies;
-}
-
-[Serializable]
-public class EraCost
-{
-    public string Name;
-    public string Description;
-    public int cost;
+    public GameObject factories;
 }

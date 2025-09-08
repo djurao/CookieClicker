@@ -10,18 +10,20 @@ public class Population : MonoBehaviour
 
     public PopulationGroup[] populationGroups;
     public PopulationGroup currentPopulationGroup;
+    private DNA dna;
     private void Awake()
     {
         Instance = this;
     }
     private void Start()
     {
-        SetEra(populationGroups[0]);
+        dna = DNA.Instance;
+        SetEra(dna.currentEvolutionStage);
     }
-    public void SetEra(PopulationGroup group)
+    public void SetEra(int index)
     {
-        currentPopulationGroup = group;
-        eraLabel.text = group.name;
+        currentPopulationGroup = populationGroups[index];
+        eraLabel.text = currentPopulationGroup.name;
     }
     private void Update()
     {

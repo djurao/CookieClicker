@@ -8,36 +8,47 @@ public class Factory : MonoBehaviour
 {
     public Image fillbar;
     public string currencyName;
-    public float productionCnt;
-    public int productionInterval;
+    private float productionCnt;
+    private int productionInterval;
     public float speed;
     public int productionOutput;
+    public int ProductionOutputMultiplier;
     public int amount;
-    public int lifetimeAmount;
     public int maxAmount;
+    public int lifetimeAmount;
     public int workers; // can be factories that produce, ships that transport... be creative
     public int autoCollect; // 1 == true
     public bool autoCollectState;
-    public Toggle autoCollectToggle;
+    public string collectRewardName;
     public int reward;
     public int rewardPrice;
-    public int ProductionOutputMultiplier;
     public bool collectOnlyIfAmountIsFull;
+    public Toggle autoCollectToggle;
     public TextMeshProUGUI storageStatsLabel;
     public TextMeshProUGUI collectLabel;
     public TextMeshProUGUI speedLabel;
-
-    public string collectRewardName;
+    public Texture2D outputResourceIcon;
     public Button collectBtn;
     public UnityEvent onCollect;
+    public SpecialObject[] specialObjects;
+    public UpgradePrice[] upgradePrices; // assigned in inspector
     [Header("In World Objects")]
     public bool keepPreviousObject;
     public int currentSpecialObjectIndex;
-    public SpecialObject[] specialObjects;
-    public UpgradePrice[] upgradePrices; // assigned in inspector
+    public bool hasEraAttribute; // if true, will update the era taskUI on collect
+    public int amountToNextEra;
+    public int eraIndex;// assigned in inspector, used for taskUI only
+    public int reqAttribute;
     private void Start()
     {
         UpdateLabels();
+        if (hasEraAttribute) 
+        {
+            var attribute = DNA.Instance.evolutionRequirements[eraIndex].requirementsAttributes[reqAttribute];
+            attribute.SetIcon(outputResourceIcon);
+            attribute.UpdateProgress(0); // so that UI is Initizlied
+            attribute.taskUI.gameObject.SetActive(true);
+        }
     }
     public void ToggleAutoCollect() 
     {
@@ -50,7 +61,8 @@ public class Factory : MonoBehaviour
         collectLabel.text = $"+{Reward()} {collectRewardName}";
         collectLabel.gameObject.SetActive(true);
         onCollect?.Invoke();
-        lifetimeAmount += amount;
+        lifetimeAmount += productionOutput;
+        if(hasEraAttribute) DNA.Instance.evolutionRequirements[eraIndex].requirementsAttributes[reqAttribute].UpdateProgress(lifetimeAmount);
         amount = 0;
         collectBtn.interactable = false;
         TryUpdateSpecialObjects(lifetimeAmount);
