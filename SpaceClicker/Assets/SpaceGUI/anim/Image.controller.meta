@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 917773780f45ed342b1ba7fa562945a5
+timeCreated: 1494587417
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90467
+  packageName: "Space GUI \u2014 The interface of the future"
+  packageVersion: 1.0
+  assetPath: Assets/SpaceGUI/anim/Image.controller
+  uploadId: 179784

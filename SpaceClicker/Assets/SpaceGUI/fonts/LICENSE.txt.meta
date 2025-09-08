@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 78bb32bc9f2280e4092ce95698dd2c0a
+timeCreated: 1494387603
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90467
+  packageName: "Space GUI \u2014 The interface of the future"
+  packageVersion: 1.0
+  assetPath: Assets/SpaceGUI/fonts/LICENSE.txt
+  uploadId: 179784

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c51014096e08e7643a939afe79614862
+timeCreated: 1494599828
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90467
+  packageName: "Space GUI \u2014 The interface of the future"
+  packageVersion: 1.0
+  assetPath: Assets/SpaceGUI/anim/ExperienceBar.anim
+  uploadId: 179784

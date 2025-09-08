@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2ceb5c0c3bca1384587ed2d8cfc16b6e
+timeCreated: 1494587416
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90467
+  packageName: "Space GUI \u2014 The interface of the future"
+  packageVersion: 1.0
+  assetPath: Assets/SpaceGUI/anim/MakePayAttention.anim
+  uploadId: 179784

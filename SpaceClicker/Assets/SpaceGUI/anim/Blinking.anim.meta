@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c347958d04feb05458b0ba510a9fc96f
+timeCreated: 1494587022
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90467
+  packageName: "Space GUI \u2014 The interface of the future"
+  packageVersion: 1.0
+  assetPath: Assets/SpaceGUI/anim/Blinking.anim
+  uploadId: 179784
