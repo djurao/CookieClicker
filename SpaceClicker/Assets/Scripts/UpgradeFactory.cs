@@ -7,6 +7,9 @@ public class UpgradeFactory : MonoBehaviour
     public GameObject upgradePanel;
     public GameObject noEnoughCurrencyPopup;
     public GameObject autoCollectUpgradeThumb;
+    public GameObject autoCollectBlocker;
+    public GameObject autoCollectUpgradedOverlay;
+
     public TextMeshProUGUI autoCollectDesc;
     public TextMeshProUGUI storageDesc;
     public TextMeshProUGUI collectionSpeedDesc;
@@ -27,8 +30,10 @@ public class UpgradeFactory : MonoBehaviour
         {
             myFactory.amount -= cost.price;
             myFactory.UpdateLabels();
+            AudioManager.Instance.PlayAccepted();
             return true;
         }
+        AudioManager.Instance.PlayForbiden();
         noEnoughCurrencyPopup.SetActive(true);
         noEnoughCurrencyPopup.transform.GetComponentInChildren<TextMeshProUGUI>().text = $"Not enough {myFactory.currencyName}";
         Invoke(nameof(DisableNoEnoughCurrency), 2);
@@ -40,7 +45,8 @@ public class UpgradeFactory : MonoBehaviour
         if (!PayForUpgrade(UpgradeType.AutoCollect)) return;
         myFactory.autoCollect = 1;
         myFactory.autoCollectToggle.gameObject.SetActive(true);
-        autoCollectUpgradeThumb.SetActive(false);
+        autoCollectBlocker.SetActive(false);
+        autoCollectUpgradedOverlay.SetActive(true);
     }
     public void UpgradeStorage() 
     {

@@ -9,20 +9,25 @@ public class DNA : MonoBehaviour
     public int currentEvolutionStage = 0;   
     public float dna;
     public float dnaRate;
-    public GameObject firstEraPanel;
+    public GameObject introductionPanel;
     public RequirementsAttribute dnaAttribute;
     public Texture2D dnaIcon;
     private void Awake()
     {
         Instance = this;
         if (PlayerPrefs.HasKey("Era"))currentEvolutionStage = PlayerPrefs.GetInt("Era");
-        if(currentEvolutionStage == 0) firstEraPanel.SetActive(true);
+        if (!PlayerPrefs.HasKey("IntroductionPanelShown")) 
+        {
+            introductionPanel.SetActive(true);
+            PlayerPrefs.SetInt("IntroductionPanelShown", 1);
+        }
         dnaAttribute = evolutionRequirements[currentEvolutionStage].requirementsAttributes[0]; 
         dnaAttribute.Init(dnaAttribute.requiredAmount, dnaIcon);
 
     }
     private void Update()
     {
+        if (Population.Instance == null) return; // safety check for scene transitions, if canvas was disabled at the start...
         var population = Population.Instance.currentPopulationGroup.amount;
         if (dna < dnaAttribute.requiredAmount) dna += (dnaRate * population) * Time.deltaTime;
         else dna = dnaAttribute.requiredAmount;

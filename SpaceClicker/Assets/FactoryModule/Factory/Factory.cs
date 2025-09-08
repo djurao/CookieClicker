@@ -9,7 +9,7 @@ public class Factory : MonoBehaviour
     public Image fillbar;
     public string currencyName;
     private float productionCnt;
-    private int productionInterval;
+    private int productionInterval = 1;
     public float speed;
     public int productionOutput;
     public int ProductionOutputMultiplier;
@@ -39,6 +39,9 @@ public class Factory : MonoBehaviour
     public int amountToNextEra;
     public int eraIndex;// assigned in inspector, used for taskUI only
     public int reqAttribute;
+    public GameObject collectInfoPanel;
+    public GameObject clickClickClick;
+
     private void Start()
     {
         UpdateLabels();
@@ -49,15 +52,29 @@ public class Factory : MonoBehaviour
             attribute.UpdateProgress(0); // so that UI is Initizlied
             attribute.taskUI.gameObject.SetActive(true);
         }
+        if (clickClickClick != null && !PlayerPrefs.HasKey("clickClickClick")) 
+        {
+            clickClickClick.SetActive(true);
+        }
     }
     public void ToggleAutoCollect() 
     {
         autoCollectState = !autoCollectState;
         autoCollectToggle.isOn = autoCollectState;
     }
+    public void CloseClickClickClick() 
+    {
+        PlayerPrefs.SetInt("clickClickClick", 1);
+        clickClickClick.SetActive(false);
+    }
     public void Collect() 
     {
 
+        if (collectInfoPanel != null && !PlayerPrefs.HasKey("collectInfoPanel")) 
+        {
+            collectInfoPanel.SetActive(true);
+            PlayerPrefs.SetInt("collectInfoPanel", 1);
+        }
         collectLabel.text = $"+{Reward()} {collectRewardName}";
         collectLabel.gameObject.SetActive(true);
         onCollect?.Invoke();
