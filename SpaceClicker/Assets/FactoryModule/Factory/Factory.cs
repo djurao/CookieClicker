@@ -1,11 +1,13 @@
 using System;
 using TMPro;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
+using System.IO;
 public class Factory : MonoBehaviour
 {
+    public string saveID = Guid.NewGuid().ToString();
     public Image fillbar;
     public string currencyName;
     private float productionCnt;
@@ -44,6 +46,9 @@ public class Factory : MonoBehaviour
 
     private void Start()
     {
+        SaveLoad.Instance.OnSaved.AddListener(Save);
+        SaveLoad.Instance.OnLoaded.AddListener(Load);
+        Load(); // Always load when starting the game
         UpdateLabels();
         if (hasEraAttribute) 
         {
@@ -55,6 +60,47 @@ public class Factory : MonoBehaviour
         if (clickClickClick != null && !PlayerPrefs.HasKey("clickClickClick")) 
         {
             clickClickClick.SetActive(true);
+        }
+    }
+    private void Save() 
+    {
+        FactorySaveData saveData = new FactorySaveData();
+        saveData.saveID = saveID;
+        saveData.amount = amount;
+        saveData.lifetimeAmount = lifetimeAmount;
+        saveData.workers = workers;
+        saveData.autoCollect = autoCollectState ? 1 : 0;
+        saveData.autoCollectState = autoCollectState;
+        saveData.currentSpecialObjectIndex = currentSpecialObjectIndex;
+        saveData.speed = speed;
+        saveData.maxAmount = maxAmount;
+        saveData.ProductionOutputMultiplier = ProductionOutputMultiplier;
+
+        string json = JsonUtility.ToJson(saveData);
+        File.WriteAllText($"{SaveLoad.Instance.directoryPath}/{saveID}.json", json);
+    }
+    public void Load() 
+    {
+        var filePath = $"{SaveLoad.Instance.directoryPath}/{saveID}.json";
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            FactorySaveData saveData = JsonUtility.FromJson<FactorySaveData>(json);
+            amount = saveData.amount;
+            lifetimeAmount = saveData.lifetimeAmount;
+            workers = saveData.workers;
+            autoCollectState = saveData.autoCollect == 1;
+            autoCollectToggle.SetIsOnWithoutNotify(autoCollectState);
+            currentSpecialObjectIndex = saveData.currentSpecialObjectIndex;
+            speed = saveData.speed;
+            maxAmount = saveData.maxAmount;
+            ProductionOutputMultiplier = saveData.ProductionOutputMultiplier;
+            UpdateLabels();
+            TryUpdateSpecialObjects(lifetimeAmount);
+        }
+        else
+        {
+            Debug.LogWarning("No save file found");
         }
     }
     public void ToggleAutoCollect() 
@@ -198,4 +244,17 @@ public class UpgradePrice
 {
     public UpgradeType upgradeType;
     public int price;
+}
+public class FactorySaveData 
+{
+    public string saveID;
+    public int amount;
+    public int lifetimeAmount;
+    public int workers;
+    public int autoCollect; // 1 == true
+    public bool autoCollectState;
+    public int currentSpecialObjectIndex;
+    public float speed;
+    public int maxAmount;
+    public int ProductionOutputMultiplier;
 }
