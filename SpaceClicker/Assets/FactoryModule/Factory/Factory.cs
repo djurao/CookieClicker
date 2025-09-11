@@ -13,8 +13,10 @@ public class Factory : MonoBehaviour
     private float productionCnt;
     private int productionInterval = 1;
     public float speed;
-    public int productionOutput;
-    public int ProductionOutputMultiplier;
+    public int manualProductionOutput;
+    public int manualProductionOutputMultiplier;
+    public int automaticProductionOutput;
+    public int automaticProductionOutputMultiplier;
     public int amount;
     public int maxAmount;
     public int lifetimeAmount;
@@ -43,6 +45,7 @@ public class Factory : MonoBehaviour
     public int reqAttribute;
     public GameObject collectInfoPanel;
     public GameObject clickClickClick;
+    
 
     private void Start()
     {
@@ -74,8 +77,8 @@ public class Factory : MonoBehaviour
         saveData.currentSpecialObjectIndex = currentSpecialObjectIndex;
         saveData.speed = speed;
         saveData.maxAmount = maxAmount;
-        saveData.ProductionOutputMultiplier = ProductionOutputMultiplier;
-
+        saveData.ProductionOutputMultiplier = manualProductionOutputMultiplier;
+        saveData.AutomaticProductionOutputMultiplier = automaticProductionOutputMultiplier;
         string json = JsonUtility.ToJson(saveData);
         File.WriteAllText($"{SaveLoad.Instance.directoryPath}/{saveID}.json", json);
     }
@@ -94,7 +97,8 @@ public class Factory : MonoBehaviour
             currentSpecialObjectIndex = saveData.currentSpecialObjectIndex;
             speed = saveData.speed;
             maxAmount = saveData.maxAmount;
-            ProductionOutputMultiplier = saveData.ProductionOutputMultiplier;
+            manualProductionOutputMultiplier = saveData.ProductionOutputMultiplier;
+            automaticProductionOutputMultiplier = saveData.AutomaticProductionOutputMultiplier;
             UpdateLabels();
             TryUpdateSpecialObjects(lifetimeAmount);
         }
@@ -124,7 +128,7 @@ public class Factory : MonoBehaviour
         collectLabel.text = $"+{Reward()} {collectRewardName}";
         collectLabel.gameObject.SetActive(true);
         onCollect?.Invoke();
-        lifetimeAmount += productionOutput;
+        lifetimeAmount += manualProductionOutput;
         if(hasEraAttribute) DNA.Instance.evolutionRequirements[eraIndex].requirementsAttributes[reqAttribute].UpdateProgress(lifetimeAmount);
         amount = 0;
         collectBtn.interactable = false;
@@ -150,7 +154,7 @@ public class Factory : MonoBehaviour
 
     public void AddAmountManualy() 
     {
-        IncreaseAmount(productionOutput * ProductionOutputMultiplier);
+        IncreaseAmount(manualProductionOutput * manualProductionOutputMultiplier);
     }
     private void Update()
     {
@@ -175,7 +179,7 @@ public class Factory : MonoBehaviour
             else 
             {
                 productionCnt = 0;  
-                IncreaseAmount(productionOutput * ProductionOutputMultiplier);
+                IncreaseAmount(automaticProductionOutput * automaticProductionOutputMultiplier);
             }
         }
     }
@@ -221,8 +225,8 @@ public class Factory : MonoBehaviour
     }
     public void UpdateLabels() 
     {
-        storageStatsLabel.text = $"+{productionOutput*ProductionOutputMultiplier}    {amount} / {maxAmount}";
-        speedLabel.text = $"production speed {speed:0.0}x";
+        storageStatsLabel.text = $"+{manualProductionOutput*manualProductionOutputMultiplier}    {amount} / {maxAmount}";
+        speedLabel.text = $"production speed {speed:0.0}x{automaticProductionOutputMultiplier}";
     }
 }
 [Serializable]
@@ -237,7 +241,8 @@ public enum UpgradeType
     AutoCollect,
     Storage,
     CollectionSpeed,
-    ProductionOutputMultiplier
+    ProductionOutputMultiplier,
+    AutomaticProductionOutputMultiplier
 }
 [Serializable]
 public class UpgradePrice
@@ -257,4 +262,5 @@ public class FactorySaveData
     public float speed;
     public int maxAmount;
     public int ProductionOutputMultiplier;
+    public int AutomaticProductionOutputMultiplier;
 }

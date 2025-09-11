@@ -64,7 +64,13 @@ public class UpgradeFactory : MonoBehaviour
     public void UpgradeCollectMultiplier()
     {
         if (!PayForUpgrade(UpgradeType.ProductionOutputMultiplier)) return;
-        myFactory.ProductionOutputMultiplier += 1;
+        myFactory.manualProductionOutputMultiplier += 1;
+        myFactory.UpdateLabels();
+    }
+    public void UpgradeAutomaticCollectMultiplier()
+    {
+        if (!PayForUpgrade(UpgradeType.AutomaticProductionOutputMultiplier)) return;
+        myFactory.automaticProductionOutputMultiplier += 1;
         myFactory.UpdateLabels();
     }
 }
