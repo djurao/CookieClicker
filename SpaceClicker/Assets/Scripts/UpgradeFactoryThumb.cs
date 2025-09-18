@@ -1,16 +1,17 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UpgradeFactoryThumb : MonoBehaviour
+public class FactoryModifierThumb : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public FactoryModifier factoryModifier;
+    public RawImage image;
+    public TextMeshProUGUI descriptionLabel;
+    public void Init(FactoryModifier fm)
     {
-        
+        factoryModifier = fm;
+        image.texture = fm.icon;
+        descriptionLabel.text = fm.description;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void TryUpgrade() => factoryModifier.TryUpgrade();
 }

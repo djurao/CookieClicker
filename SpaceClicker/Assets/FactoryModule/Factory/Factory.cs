@@ -35,7 +35,6 @@ public class Factory : MonoBehaviour
     public Button collectBtn;
     public UnityEvent onCollect;
     public SpecialObject[] specialObjects;
-    public UpgradePrice[] upgradePrices; // assigned in inspector
     [Header("In World Objects")]
     public bool keepPreviousObject;
     public int currentSpecialObjectIndex;
@@ -236,19 +235,13 @@ public class SpecialObject
     public int cost;
     public GameObject @object;
 }
-public enum UpgradeType 
+public enum ModifierType 
 {
     AutoCollect,
-    Storage,
-    CollectionSpeed,
+    Capacity,
+    ProductionSpeed,
     ProductionOutputMultiplier,
     AutomaticProductionOutputMultiplier
-}
-[Serializable]
-public class UpgradePrice
-{
-    public UpgradeType upgradeType;
-    public int price;
 }
 public class FactorySaveData 
 {

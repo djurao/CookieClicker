@@ -2,34 +2,36 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 using System;
+using System.Collections.Generic;
 public class UpgradeFactory : MonoBehaviour
 {
     public Factory myFactory;
+    public List<FactoryModifier> factoryModifiers;
+    public List<FactoryModifierThumb> factoryModifierThumbs;
+    public FactoryModifierThumb factoryModifierPrefab;
+    public Transform modifiersParent;
     public GameObject upgradePanel;
     public GameObject noEnoughCurrencyPopup;
     public GameObject autoCollectUpgradeThumb;
     public GameObject autoCollectBlocker;
-    public GameObject autoCollectUpgradedOverlay;
 
-    public TextMeshProUGUI autoCollectDesc;
-    public TextMeshProUGUI storageDesc;
-    public TextMeshProUGUI collectionSpeedDesc;
-    public TextMeshProUGUI collectMultiplierDesc;
-
-    public void OpenCloseFactoryUpgradePanel()
+    void Start()
     {
-        upgradePanel.SetActive(!upgradePanel.activeInHierarchy);
-        autoCollectDesc.text = $"Auto Collect ({myFactory.upgradePrices.FirstOrDefault(x => x.upgradeType == UpgradeType.AutoCollect).price})";
-        storageDesc.text = $"Storage +10 ({myFactory.upgradePrices.FirstOrDefault(x => x.upgradeType == UpgradeType.Storage).price})";
-        collectionSpeedDesc.text = $"Speed +1 ({myFactory.upgradePrices.FirstOrDefault(x => x.upgradeType == UpgradeType.CollectionSpeed).price})";
-        collectMultiplierDesc.text = $"Collect Output +1 ({myFactory.upgradePrices.FirstOrDefault(x => x.upgradeType == UpgradeType.ProductionOutputMultiplier).price})";
-    } 
-    private bool PayForUpgrade(UpgradeType upgradeType) 
-    {
-        var cost = myFactory.upgradePrices.FirstOrDefault(x => x.upgradeType == upgradeType);
-        if (myFactory.amount >= cost.price) 
+        foreach (var factoryModifier in factoryModifiers)
         {
-            myFactory.amount -= cost.price;
+            factoryModifier.upgradeFactory = this;
+            FactoryModifierThumb newFMT = Instantiate(factoryModifierPrefab, modifiersParent);
+            factoryModifier.factoryModifierThumb = newFMT;
+            newFMT.Init(factoryModifier);
+            factoryModifierThumbs.Add(newFMT);
+        }
+    }
+    public void OpenCloseFactoryUpgradePanel() => upgradePanel.SetActive(!upgradePanel.activeInHierarchy);
+    public bool PayForUpgrade(FactoryModifier factoryModifier) 
+    {
+        if (myFactory.amount >= factoryModifier.upgradeCost) 
+        {
+            myFactory.amount -= factoryModifier.upgradeCost;
             myFactory.UpdateLabels();
             AudioManager.Instance.PlayAccepted();
             return true;
@@ -41,36 +43,4 @@ public class UpgradeFactory : MonoBehaviour
         return false;
     }
     private void DisableNoEnoughCurrency() => noEnoughCurrencyPopup.SetActive(false);
-    public void UpgradeAutoCollect() 
-    {
-        if (!PayForUpgrade(UpgradeType.AutoCollect)) return;
-        myFactory.autoCollect = 1;
-        myFactory.autoCollectToggle.gameObject.SetActive(true);
-        autoCollectBlocker.SetActive(false);
-        autoCollectUpgradedOverlay.SetActive(true);
-    }
-    public void UpgradeStorage() 
-    {
-        if (!PayForUpgrade(UpgradeType.Storage)) return;
-        myFactory.maxAmount += 10;
-        myFactory.UpdateLabels();
-    }
-    public void UpgradeCollectionSpeed()
-    {
-        if (!PayForUpgrade(UpgradeType.CollectionSpeed)) return;
-        myFactory.speed += 0.1f;
-        myFactory.UpdateLabels();
-    }
-    public void UpgradeCollectMultiplier()
-    {
-        if (!PayForUpgrade(UpgradeType.ProductionOutputMultiplier)) return;
-        myFactory.manualProductionOutputMultiplier += 1;
-        myFactory.UpdateLabels();
-    }
-    public void UpgradeAutomaticCollectMultiplier()
-    {
-        if (!PayForUpgrade(UpgradeType.AutomaticProductionOutputMultiplier)) return;
-        myFactory.automaticProductionOutputMultiplier += 1;
-        myFactory.UpdateLabels();
-    }
 }
